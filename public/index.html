@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 50px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        input {
+            padding: 10px;
+            width: 70%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+        .shorten-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        .copy-btn {
+            background-color: #ff9800;
+            color: white;
+        }
+        .go-btn {
+            background-color: #007bff;
+            color: white;
+        }
+        .shorten-btn:hover {
+            background-color: #218838;
+        }
+        .copy-btn:hover {
+            background-color: #e68900;
+        }
+        .go-btn:hover {
+            background-color: #0056b3;
+        }
+        #shortUrl {
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .qr-code {
+            margin-top: 10px;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>URL Shortener</h2>
+        
+        <input type="text" id="longUrl" placeholder="Enter long URL">
+        <input type="text" id="customCode" placeholder="Custom Short Code (optional)">
+        <button class="shorten-btn" onclick="shortenUrl()">Shorten</button>
+        
+        <div id="shortUrlContainer" style="display:none;">
+            <p>Shortened URL: <a id="shortUrl" target="_blank"></a></p>
+            <button class="copy-btn" onclick="copyToClipboard()">Copy</button>
+            <button class="go-btn" onclick="redirectUrl()">Go</button>
+            <div class="qr-code">
+                <img id="qrCode" src="" alt="QR Code" width="150">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Made by <strong>Akshay Chauhan</strong>
+    </footer>
+
+    <script>
+        document.getElementById("longUrl").focus(); // Autofocus on input field
+
+        async function shortenUrl() {
+            const longUrl = document.getElementById("longUrl").value;
+            const customCode = document.getElementById("customCode").value.trim();
+
+            if (!longUrl) {
+                alert("Please enter a URL!");
+                return;
+            }
+
+            const response = await fetch("/shorten", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ longUrl, customCode })
+            });
+
+            const data = await response.json();
+
+            if (data.shortUrl) {
+                document.getElementById("shortUrl").innerText = data.shortUrl;
+                document.getElementById("shortUrl").href = data.shortUrl;
+                document.getElementById("qrCode").src = data.qrCodeUrl;
+                document.getElementById("shortUrlContainer").style.display = "block";
+                document.getElementById("longUrl").value = ""; // Clear input field
+                document.getElementById("customCode").value = "";
+            } else {
+                alert("Error: " + (data.error || "Something went wrong"));
+            }
+        }
+
+        function copyToClipboard() {
+            const shortUrl = document.getElementById("shortUrl").innerText;
+            navigator.clipboard.writeText(shortUrl).then(() => {
+                alert("Copied to clipboard!");
+            });
+        }
+
+        function redirectUrl() {
+            const shortUrl = document.getElementById("shortUrl").href;
+            if (shortUrl) {
+                window.open(shortUrl, "_blank");
+            }
+        }
+    </script>
+
+</body>
+</html>
