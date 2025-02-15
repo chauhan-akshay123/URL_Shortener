@@ -4,5 +4,8 @@
     "express": "^4.21.2",
     "mongoose": "^8.10.1",
     "uuid": "^11.0.5"
+  },
+  "scripts": {
+    "start": "node server.js", 
   }
 }
