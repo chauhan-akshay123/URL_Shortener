@@ -9,13 +9,12 @@ app.use(express.json());
 
 initializeDatabase();
 
-// Serve Static Files (Frontend)
-app.use(express.static("public"));
-
-// API Routes
 app.use("/", urlRoutes);
 
-const PORT = 5000;
+const PORT = process.env.PORT || 3000; 
+
 app.listen(PORT, () => {
- console.log(`Server is running on PORT ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = app; 
