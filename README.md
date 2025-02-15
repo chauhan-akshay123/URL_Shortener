@@ -2,6 +2,28 @@
 
 A simple and efficient URL shortener service with custom short codes and QR code generation capabilities.
 
+📸 Screenshots
+<table>
+  <tr>
+    <td>
+      <img src="/api/placeholder/800/400" alt="Main Interface" />
+      <p><em>Main Interface - URL Shortening Form</em></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="/api/placeholder/800/400" alt="Shortened URL Result" />
+      <p><em>Shortened URL with QR Code</em></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="/api/placeholder/800/400" alt="Custom Short Code" />
+      <p><em>Custom Short Code Creation</em></p>
+    </td>
+  </tr>
+</table>
+
 ## 🚀 Features
 
 - **Shorten URLs** - Convert long URLs into short, shareable links
