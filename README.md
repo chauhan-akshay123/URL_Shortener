@@ -6,13 +6,13 @@ A simple and efficient URL shortener service with custom short codes and QR code
 <table>
   <tr>
     <td>
-      <img src="ss1.png" alt="Main Interface" />
+      <img src="ss1.png/800/400" alt="Main Interface" />
       <p><em>Main Interface - URL Shortening Form</em></p>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="/api/placeholder/800/400" alt="Shortened URL Result" />
+      <img src="ss2.png/800/400" alt="Shortened URL Result" />
       <p><em>Shortened URL with QR Code</em></p>
     </td>
   </tr>
