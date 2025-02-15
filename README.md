@@ -24,7 +24,7 @@ A simple and efficient URL shortener service with custom short codes and QR code
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/url-shortener.git
+git clone https://github.com/chauhan-akshay123/URL_Shortener.git
 cd url-shortener
 ```
 
